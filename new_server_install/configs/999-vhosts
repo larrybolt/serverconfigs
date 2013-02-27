@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+	UseCanonicalName Off
+	VirtualDocumentRoot /var/web/vhosts/%0
+	#ServerName HOST 
+	ServerAlias *
+	ServerAdmin admin@SERVERNAME
+	ServerSignature Off
+	ErrorLog /var/web/logs/error.%0.log
+	CustomLog /var/web/logs/access.%0.log common
+ 
+  <Directory "/var/web/vhosts/%0">
+		SetEnv SERVER_ADMIN admin@SERVERNAME
+		Options -ExecCGI -MultiViews -Includes -Indexes FollowSymLinks
+		AllowOverride All
+		Order allow,deny
+		Allow from all
+	</Directory>
+</VirtualHost>
